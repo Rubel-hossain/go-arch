@@ -1,8 +1,7 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	"net/http"
 )
 
 type Person struct {
@@ -12,15 +11,26 @@ type Person struct {
 }
 
 func main() {
-	p1 := Person{
-		First: "First",
-		Email: "rrrj@gmail.com",
-		Phone: "8874444",
-	}
-	psjon, err := json.Marshal(p1)
+	// p1 := Person{
+	// 	First: "First",
+	// 	Email: "rrrj@gmail.com",
+	// 	Phone: "8874444",
+	// }
+	// psjon, err := json.Marshal(p1)
 
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(psjon))
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println(string(psjon))
+	http.HandleFunc("/encode", foo)
+	http.HandleFunc("/decode", bar)
+	http.ListenAndServe(":3000", nil)
+
+}
+func foo(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func bar(w http.ResponseWriter, r *http.Request) {
+
 }
